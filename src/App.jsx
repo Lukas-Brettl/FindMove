@@ -1,5 +1,6 @@
 import movie from "./assets/images/movie.jpg"
 export default function App(){
+    
     return(
         <>
             <nav>
@@ -7,7 +8,7 @@ export default function App(){
             </nav>
             <section className="flex w-full h-full items-center px-6 text-white">
 
-                <div className="flex flex-col items-center relative bg-red-950">
+                <div className="flex flex-col items-center relative bg-red-950 border-2 border-red-950">
                     <img src={movie} alt="" className="w-80"/>
                     {/*raiting (stars) */}
                     <div class="flex gap-1 flex-row-reverse justify-end items-center py-3">
