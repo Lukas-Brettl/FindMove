@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import App from "./App.jsx"
 export default function Information(){
     const [questionNumber, setQuestionNumber] = useState(0)
     const [app, setApp] = useState(false)
+
+    const inputRef = useRef(null)
 
     const QuestionsArray = ["Name", "Genre", "Keywords"]
     const questions = {
@@ -19,9 +21,18 @@ export default function Information(){
             <>
                 <h2>{QuestionsArray[questionNumber]}</h2>
                 
-                <input type="text" placeholder={questions[questionNumber[questionNumber]]}/>
-                {questionNumber < 2 ? <button onClick={() => setQuestionNumber(questionNumber + 1)}>next</button>
-                :<button onClick={() => setApp(true)}>finish</button>}
+                <input ref={inputRef} type="text" placeholder={questions[questionNumber[questionNumber]]}/>
+                {questionNumber < 2 ? <button onClick={() => {
+                    setQuestionNumber(questionNumber + 1)
+                    localStorage.setItem(QuestionsArray[questionNumber], inputRef.current.value)
+                    inputRef.current.value = ""
+                }}>next</button>
+                
+                :<button onClick={() => {
+                    setApp(true)
+                    localStorage.setItem(QuestionsArray[questionNumber], inputRef.current.value)
+                    inputRef.current.value = ""
+                }}>finish</button>}
             </>
             
             
